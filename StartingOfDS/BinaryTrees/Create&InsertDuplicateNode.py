@@ -54,16 +54,27 @@ def takeLevelWiseInput():
 def insertDuplicateNode(root):
     if root==None:
         return
-    q=queue.Queue()
-    q.put(root)
+##    q=queue.Queue()
+##    q.put(root)
     duplicate=BinaryTreeNode(root.data)
+    
     leftRoot=insertDuplicateNode(root.left)
     rightRoot=insertDuplicateNode(root.right)
     root.left=duplicate
     duplicate.left=leftRoot
     root.right=rightRoot
     return root
+def def insertDuplicateNode2(root):
+    if root == None:
+        return
+    newNode = BinaryTreeNode(root.data)
+    rootLeft = root.left
 
+    root.left = newNode
+    newNode.left = rootLeft
+
+    insertDuplicateNode2(root.left)
+    insertDuplicateNode2(root.right)
 root=takeLevelWiseInput()
 printLevelWise(root)
 insertDuplicateNode(root)
