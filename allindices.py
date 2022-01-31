@@ -9,3 +9,6 @@ def rec(arr,start,x):
     rec(arr,start+1,x)
 
 rec(arr,0,x)
+
+
+
