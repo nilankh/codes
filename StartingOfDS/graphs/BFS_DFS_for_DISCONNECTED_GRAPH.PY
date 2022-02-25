@@ -59,5 +59,5 @@ g.addEdge(2,4)
 g.addEdge(2,5)
 g.addEdge(4,6)
 g.bfs()
-#print(g)
+print(g)
     
