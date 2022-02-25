@@ -50,17 +50,54 @@ class Graph:
             if visited[i] is False:
                 self.__bfsHelper(i, visited)
 
-g = Graph(4)
-g.addEdge(0, 1)
-g.addEdge(0, 3)
-g.addEdge(1, 2)
-g.addEdge(2, 3)
-print(g)
-print("*********DFS*********")
-g.dfs()
-print("*********BFS*********")
-g.bfs()
 
+    def hasPath(self, v1, v2, visited):
+        if self.adjMatrix[v1][v2] > 0:
+            return True
+        visited[v1] = True
+        for i in range(self.nVertices):
+            if visited[i] is False:
+                if self.adjMatrix[v1][i] > 0 and visited[i] is False:
+                    if self.hasPathe(i, v2, visited):
+                        return True
+        return False
+                    
+##    def hasPath(self, v1, v2):
+##        visited = [False for i in range(self.nVertices)]
+##        self.hasPathHelper(v1, v2, visited)
+        
+
+##g = Graph(4)
+##g.addEdge(0, 1)
+##g.addEdge(0, 3)
+##g.addEdge(1, 2)
+##g.addEdge(2, 3)
+##print(g)
+##print("*********DFS*********")
+##g.dfs()
+##print("*********BFS*********")
+##g.bfs()
+from sys import setrecursionlimit
+setrecursionlimit(10000)
+li = [int(x) for x in input().split()]
+v = li[0]
+e = li[1]
+c=0
+g=Graph(v)
+visited = [False for i in range(v)]
+for i in range(e):
+    a,b=[int(x) for x in input().split()]
+    g.addEdge(a,b)
+li1 = [int(x) for x in input().split()]
+v1 = li1[0]
+#print(v1)
+v2 = li1[1]
+#print(v2)
+result = g.hasPath(v1,v2, visited)
+if result:
+    print("true")
+else :
+    print("false")
 
 
 
