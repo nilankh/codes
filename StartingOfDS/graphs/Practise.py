@@ -61,7 +61,60 @@ class Graph:
                     if self.hasPathe(i, v2, visited):
                         return True
         return False
-                    
+    def __getPathByBFSHelper(self, sv, ev, visited):
+        parent = {}
+        q = queue.Queue()
+
+        if self.adjMatrix[sv][ev] == 1 and sv == ev:
+            ans = []
+            ans.append(sv)
+            return ans
+        q.put(sv)
+        visited[sv] = True
+
+        while q.empty() is False:
+            front = q.get()
+            for i in range(self.nVertices):
+                if self.adjMatrix[front][i] == 1 and visited[i] is False:
+                    parent[i] = front
+                    q.put(i)
+                    visited[i] = True
+
+                    if i == ev:
+                        ans = []
+                        ans.append(ev)
+                        value = parent[ev]
+                        while value != sv:
+                            ans.append(value)
+                            value = parent[value]
+
+                        ans.append(value)
+                        return ans
+        return []
+                        
+
+    def getPathByBFS(self, sv, ev):
+        visited = [False for i in range(self.nVertices)]
+        return self.__getPathByBFSHelper(sv, ev, visited)
+
+
+    def __getPathByDFSHelper(self, sv, ev, visited):
+        if sv == ev:
+            return list([sv])
+
+        visited[sv] = True
+        for i in range(self.nVertices):
+            if self.adjMatrix[sv][i] == 1 and visited[i] is False:
+                li = self.__getPathByDFSHelper(i, ev, visited)
+
+                if li != None:
+                    li.append(sv)
+                    return li
+        return None
+    def getPathByDFS(self, sv, ev):
+        visited = [False for i in range(self.nVertices)]
+        return self.__getPathByDFSHelper(sv, ev, visited)
+        
 ##    def hasPath(self, v1, v2):
 ##        visited = [False for i in range(self.nVertices)]
 ##        self.hasPathHelper(v1, v2, visited)
@@ -77,6 +130,7 @@ class Graph:
 ##g.dfs()
 ##print("*********BFS*********")
 ##g.bfs()
+'''
 from sys import setrecursionlimit
 setrecursionlimit(10000)
 li = [int(x) for x in input().split()]
@@ -98,10 +152,42 @@ if result:
     print("true")
 else :
     print("false")
+'''
 
+'''
+li = [int(x) for x in input().split()]
+v = li[0]
+e = li[1]
+g = Graph(v)
+for i in range(e):
+    a, b = [int(x) for x in input().split()]
+    g.addEdge(a, b)
+li1 = [int(x) for x in input().split()]
+sv = li1[0]
+ev = li1[1]
 
+li = g.getPathByBFS(sv, ev)
+if len(li) != 0:
+    for element in li:
+        print(element, end = ' ')
+'''
 
+li = [int(x) for x in input().split()]
+v = li[0]
+e = li[1]
+g = Graph(v)
+for i in range(e):
+    a, b = [int(x) for x in input().split()]
+    g.addEdge(a, b)
+li1 = [int(x) for x in input().split()]
+sv = li1[0]
+ev = li1[1]
 
+k = g.getPathByDFS(sv, ev)
+if k != None:
+    for element in k:
+        print(element, end = ' ')
+        
 
 
 

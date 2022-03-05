@@ -48,8 +48,39 @@ def skipMdeleteN(head, m, n):
             t=t.next
         curr.next=t
         curr=t
-    return head  
-    
+    return head
+
+#ma'am approach
+def skipMdeleteN(head, M, N) :
+    if m == 0:
+    	return None
+    if n == 0:
+        return head
+    if head is None or head.next is None:
+        return head
+    t1 = head
+    t2 = None
+    while t1 is not None:
+        c1 = 1
+        c2 = 1
+        while t1 is not None and c1 < M:
+            t1 = t1.next
+            c1 += 1
+        if t1 == None:
+            return head
+        if t1.next is not None:
+            t2 = t1.next
+        # t2 = t1.next
+        while t2 is not None and c2 < N:
+            t2 = t2.next
+            c2 += 1
+        if t2 is not None :#or t2.next is not None
+            t2 = t2.next
+        t1.next = t2
+        t1 = t2
+
+    return head
+   
 head = takeInput()
 m = int(input())
 n = int(input())

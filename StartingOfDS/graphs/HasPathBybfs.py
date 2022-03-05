@@ -29,14 +29,18 @@ class Graph:
         visited[sv] = True
         while q.empty() is False:
             u = q.get()
+            #print("U data", u)
             for i in range(self.nVertices):
+                #print("I value inside for loop,", i)
                 if(self.adjMatrix[u][i] == 1 and not visited[i]):
                     #print("ith value inside for loop",i)
                     if i == ev:
                         #print("ith value",i)
                         return True
                     q.put(i)
+                    #print("q",q)
                     visited[i] = True
+                    #print("Every time visited", visited)
         return False
 
     def hasPathByBFS(self, sv, ev):
