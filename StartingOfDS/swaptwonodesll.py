@@ -62,7 +62,46 @@ def swap_nodes(head, i, j):
     #printLL(currj)
     return head
 
-
+def swapNodes(head, i, j) :
+    if( i == j):
+        return head
+    if(i > j):
+        i, j = j, i
+        
+    p1 = None
+    p2 = None
+    temp1 = head
+    temp2 = head
+    if(i == 0):
+        for i in range(1, j + 1):
+            p2 = temp2
+            temp2 = temp2.next
+        if j ==1:
+            a = temp2.next
+            temp2.next = temp1
+            temp1.next = a
+            return temp2
+        
+        a = temp1.next
+        temp1.next = temp2.next
+        p2.next = temp1
+        temp2.next = a
+        return temp2
+    
+    for i in range(1, i + 1):
+        p1 = temp1
+        temp1 = temp1.next
+    for i in range(1, j + 1):
+        p2 = temp2
+        temp2 = temp2.next
+    
+    
+    p1.next = temp2
+    p2.next = temp1
+    a = temp1.next
+    temp1.next = temp2.next
+    temp2.next = a
+    return head
 
 
 
