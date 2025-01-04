@@ -25,7 +25,7 @@
 """
 
 class Item:
-    # what does this method do? It is called when you create an instance of the class. Python executes this double undescore init function automatically.
+    # what does this method do? It is called when you create an instance of the class. Python executes this double undescore init function automatically. it means, item1 = Item() first isme khud ko hi refere krta hai, self is the object itself.
     # def __init__(self, name, price,quantity=0):
     def __init__(self, name: str, price: float,quantity=0):
         # suppose i dont want to receive the negative values for quantity & price
@@ -34,6 +34,7 @@ class Item:
         assert price >= 0, f"Price {price} is not valid"
         assert quantity >= 0, f"Quantity {quantity} is not valid"
 
+        # these all are instance attributes, they are associated with the instance of the class
         self.name = name
         self.price = price
         self.quantity = quantity
