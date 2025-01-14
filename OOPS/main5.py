@@ -72,9 +72,9 @@ class Item:
     def __repr__(self):
         return f"{self.__class__.__name__} {self.name} - INR {self.price} - {self.quantity} units"
     
-    # @property
-    # def read_only_name(self):
-    #     return "NILANK"
+    @property
+    def read_only_name(self):
+        return "NILANK"
 
     
 
